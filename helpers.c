@@ -1,5 +1,16 @@
 #include "helpers.h"
 
+
+// some usefull functions
+
+void swap(RGBTRIPLE *add1, RGBTRIPLE *add2)
+    {
+        RGBTRIPLE temp = *add1;
+        *add1 = *add2;
+        *add2 = temp;
+    };
+
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -21,6 +32,16 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+
+    int actual_width = width-1;
+    for(int i=0; i < height; i++)
+    {
+        for(int j=0 ; j < width/2; j++)
+        {
+            swap(&image[i][j], &image[i][actual_width-j]);
+        }
+
+    }
     return;
 }
 
@@ -35,3 +56,4 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     return;
 }
+
