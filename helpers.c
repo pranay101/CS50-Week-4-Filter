@@ -122,6 +122,59 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+  int Gx[9]={-1,0,1,-2,0,2,-1,0,1};
+  int Gy[9]={-1,-2,-1,0,0,0,1,2,1};
+  int startRow,endRow,startColumn,endColumn;
+  int traverse_matrix=0;
+  struct sumGx
+  {
+    int red=0;
+    int green=0;
+    int blue =0;
+  };
+  struct sumGy
+  {
+    int red=0;
+    int green=0;
+    int blue =0;
+  }
+
+  for (int i = 0; i < height; i++)
+  {
+    for (int j = 0; j < width; j++)
+    {
+        traverse_matrix=0;
+        sumGx=0;
+        sumGy=0;
+        if(i - 1 < 0)
+          startRow = i;
+        else
+          startRow = i-1;
+        if(i + 1 >= height)
+          endRow = i;
+        else
+          endRow = i+1;
+        if(j - 1 < 0)
+          startColumn = j;
+        else
+          startColumn = j-1;
+        if(j + 1 >= width)
+          endColumn = j;
+        else
+          endColumn = j+1;
+
+          for(int k=startRow; k<=endRow; k++)
+          {
+            for(int l= startColumn; l<=endColumn; l++)
+            {
+                sumGx.green += image[k][l];
+                sumGx.green += image[k][l];
+                sumGx.green += image[k][l];
+            }
+          }
+
+    }
+  }
     return;
 }
 
